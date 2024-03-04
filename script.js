@@ -60,7 +60,7 @@ function hired(){
 function buySlop(){
 if (money >= 10){
   money = money - 10;
-  slop = slop + 100;
+  slop = slop + 5;
   moneyText.innerText = money;
   slopText.innerText = slop;
 } else[
