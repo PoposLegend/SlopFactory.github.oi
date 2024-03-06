@@ -4,9 +4,13 @@ body{
 
 #text1 {
   background-color: #0a0a23;
+  animation: typing 2s steps(22), blink .5s step-end infinite alternate;
   color: #ffffff;
   padding: 10px;
+  font-family: Fantasy;
+
 }
+
 #game{
   max-width: 500px;
   max-height: 400px;
@@ -14,6 +18,8 @@ body{
   color: #ffffff;
   margin: 30px auto 0px;
   padding: 10px;
+  border-radius: 1pc;
+  box-shadow: 0 5px 10px rgba(255, 255, 255, 0.35);
 }
 
 
@@ -29,14 +35,18 @@ body{
 }
 
 button {
+  margin-top: 3px;
   cursor: pointer;
   color: #0a0a23;
   background-color: #feac32;
   background-image: linear-gradient(#fecc4c, #ffac33);
   border: 3px solid #feac32;
+  margin-bottom: 3px;
+  transition: background-color 0.5s ease;
 }
 
 /* Button hover effect */
 button:hover {
   transform: scale(1.1);
+  background-color: #ffa500; /* Changed hover background color */
 }

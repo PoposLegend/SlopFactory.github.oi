@@ -50,7 +50,6 @@ function factory(){
   button5.innerText = "Managers";
   button5.style.display ="inline-block";
   button5.onclick = managers;
-  button120.style.display ="inline-block"
 };
 
 function managers(){
