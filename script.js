@@ -50,13 +50,14 @@ function factory(){
   button5.innerText = "Managers";
   button5.style.display ="inline-block";
   button5.onclick = managers;
+  button120.style.display ="inline-block"
 };
 
 function managers(){
   button1.onclick = factory;
   button1.innerText = "Go Back"
 
-  button2.innerText = "Hire aiden (99k slops)"
+  button2.innerText = "Hire aidan (99k slops)"
   button2.onclick = aiden;
   button3.innerText = "Hire Popos (200k slops)"
   button3.onclick = popos;
@@ -74,9 +75,9 @@ function aiden(){
   manegars += 1;
   aidan += 1
   managersText.innerText = manegars;
-  text1.innerText ="You got hired aiden now you get + 5 workers/bosses every 1 sec"
+  text1.innerText ="You got hired aidan now you get + 5 workers/bosses every 1 sec"
   } else {
-    text1.innerText ="You dont have enough slops to buy aiden";
+    text1.innerText ="You dont have enough slops to buy aidan";
   }
   }
 }
@@ -164,7 +165,8 @@ function shop() {
   button4.innerText = "Buy 200 Slops(1k$)"
   button4.onclick = buy200Slops;
   button5.innerText = "buy 2k slops (10k$)"
-  button5.onclick = buy2kslops;
+  button5.onclick = buy2kslops;;
+  button120.style.display ="none"
 };
 
 function buySlop(){
@@ -174,7 +176,7 @@ function buySlop(){
     moneyText.innerText = money;
     slopText.innerText = slop;
   } else[
-    text1.innerText ="you dont have enough money to buy 2 slops!"
+    text1.innerText ="you dont have enough Tachobuck to buy 2 slops!"
   ]
   };
   function buy20Slops(){
@@ -184,7 +186,7 @@ function buySlop(){
       moneyText.innerText = money;
       slopText.innerText = slop;
     } else[
-      text1.innerText ="you dont have enough money to buy 20 slops!"
+      text1.innerText ="you dont have enough Tachobuck to buy 20 slops!"
     ]
     };
 
@@ -195,7 +197,7 @@ function buySlop(){
         moneyText.innerText = money;
         slopText.innerText = slop;
       } else[
-        text1.innerText ="you dont have enough money to buy 200 slops!"
+        text1.innerText ="you dont have enough Tachobuck to buy 200 slops!"
       ]
       };
 
@@ -206,7 +208,7 @@ function buySlop(){
           moneyText.innerText = money;
           slopText.innerText = slop;
         } else[
-          text1.innerText ="you dont have enough money to buy 2000 slops!"
+          text1.innerText ="you dont have enough Tachobuck to buy 2000 slops!"
         ]
         };
 
@@ -357,7 +359,7 @@ function automoneymaking (){
 
 function worked(){
   money = money + 1;
-  text1.innerText = "you worked and got 1 dollar"
+  text1.innerText = "you worked and got 1 Tachobuck"
   moneyText.innerText = money;
 };
 
