@@ -356,7 +356,7 @@ function automoneymaking (){
 
 
 function worked(){
-  money = money + 1000000;
+  money = money + 1;
   text1.innerText = "you worked and got 1 dollar"
   moneyText.innerText = money;
 };
