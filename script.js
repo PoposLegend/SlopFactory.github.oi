@@ -6,7 +6,14 @@ let manegars =0;
 let aidan = 0;
 let popos1 =0;
 let dave =0;
-
+let cat=0;
+let upgrade0 =0;
+let upgrade1 =0;
+let upgrade2 =0
+let upgrades =0;
+let moneyEarnedMultiplier = 1;
+let workerEarnedMultiplier = 1;
+let bossesEarnedMultiplier =1;
 const workerCost = 20;
 const bossCost =200;
 const slopCost = 10;
@@ -18,7 +25,9 @@ const button3 = document.querySelector("#button3")
 const button4 = document.querySelector("#button4")
 const button5 = document.querySelector("#button5")
 const button6 = document.querySelector("#button6")
+const button7 = document.querySelector("#button7")
 const text1 = document.querySelector("#text1")
+const upgradesText = document.querySelector("#upgradesText")
 const moneyText= document.querySelector("#moneyText")
 const slopText= document.querySelector("#slopText")
 const workersText = document.querySelector("#workersText")
@@ -33,9 +42,76 @@ button2.onclick = worked;
 button3.onclick = hireWorker;
 button4.onclick = hireBosses;
 button5.onclick = managers;
-button6.onclick = buyMaxWorkers;
+button6.onclick = upgrade;
 button120.onclick = retireJoke;
+
+button6.innerText = "Upgrades"
+button7.style.display = "none"
+function upgrade (){
+button1.innerText ="Go back"
+button1.onclick = factory;
+button2.innerText ="x2 cash from Work (2k slops)"
+button2.onclick = upgradeCash
+button3.innerText = "2x cash from Workers (200k slops)"
+button3.onclick = upgradeWorkers
+button4.innerText = "2x slops from bosses!(20m slops)"
+button4.onclick = upgradeBosses
+button5.style.display ="none"
 button6.style.display ="none"
+text1.innerText ="Buy upgrades to get more (slops/T$)"
+}
+
+function upgradeBosses() {
+  if (upgrade2 == 0) {
+    if (slop >= 20000000) {
+      slop -= 20000000;
+      upgrade2 += 1;
+      upgrades += 1;
+      upgradesText.innerText = upgrades;
+      
+      // Update worker earnings to 2 money per second with the upgrade
+      bossesEarnedMultiplier = 2;
+      
+      text1.innerText = "You now have x2 Cash from Bosses";
+    } else {
+      text1.innerText = "You need more slops!!";
+    }
+  }
+}
+
+function upgradeWorkers() {
+  if (upgrade1 == 0) {
+    if (slop >= 200000) {
+      slop -= 200000;
+      upgrade1 += 1;
+      upgrades += 1;
+      upgradesText.innerText = upgrades;
+      
+      // Update worker earnings to 2 money per second with the upgrade
+      workerEarnedMultiplier = 2;
+      
+      text1.innerText = "You now have x2 Cash from Workers";
+    } else {
+      text1.innerText = "You need more slops!!";
+    }
+  }
+}
+
+function upgradeCash() {
+  if (upgrade0 == 0) {
+    if (slop >= 2000) {
+      slop -= 2000;
+      upgrade0 += 1;
+      upgrades += 1;
+      upgradesText.innerText = upgrades;
+      moneyEarnedMultiplier = 2;
+      text1.innerText = "You now have x2 Cash from Work";
+    } else {
+      text1.innerText = "You need more slops!!";
+    }
+  }
+}
+
 function calculateMaxWorkers() {
   return Math.floor(slop / workerCost);
 }
@@ -115,7 +191,10 @@ function factory(){
   button5.innerText = "Managers";
   button5.style.display ="inline-block";
   button5.onclick = managers;
-  button6.style.display ="none"
+  button6.innerText = "Upgrades"
+  button6.onclick = upgrade;
+  button6.style.display ="inline-block"
+  button7.style.display = "none"
 };
 
 function managers(){
@@ -128,9 +207,42 @@ function managers(){
   button3.onclick = popos;
   button4.innerText = "Hire dave the magical cheese wizard (1m slops)"
   button4.onclick = lastManager;
-  button5.style.display ="none"
-
+  button5.innerText = "Hire tachophobicat (20m slops)"
+  button5.onclick = tachophobicat
+  button6.style.display ="none"
   text1.innerText = "Hire managers to auto buy workers and bosses! also you can only hire each manager once"
+}
+
+function tachophobicat() {
+  if (cat == 0) {
+      if (slop >= 20000000) {
+          slop = slop - 20000000;
+          cat += 1;
+          manegars += 1;
+          managersText.innerText = manegars;
+          slopText.innerText = slop;
+          text1.innerText = "You hired tachophobicat now you get +1k / bosses and workers per second";
+          
+          // Start the automoneymakingworkerscat function when tachophobicat is bought
+          automoneymakingworkerscat();
+      } else {
+          text1.innerText = "You don't have enough slops to buy tachophobicat";
+      }
+  }
+}
+
+function automoneymakingworkerscat() {
+  if (cat > 0) {
+      setInterval(function() {
+          // Assuming each boss and worker generates 1k per second due to tachophobicat
+          workers += 1000;
+          bosses += 1000;
+
+          // Update the text elements with the updated values
+          workersText.innerText = workers;
+          bossText.innerText = bosses;
+      }, 1000); // Run the function every 1000 milliseconds (1 second)
+  }
 }
 
 function aiden(){
@@ -140,7 +252,7 @@ function aiden(){
   manegars += 1;
   aidan += 1
   managersText.innerText = manegars;
-  text1.innerText ="You got hired aidan now you get + 5 workers/bosses every 1 sec"
+  text1.innerText ="You  hired aidan now you get + 5 workers/bosses every 1 sec"
   } else {
     text1.innerText ="You dont have enough slops to buy aidan";
   }
@@ -168,7 +280,7 @@ function popos(){
   manegars += 1;
   popos1 += 1
   managersText.innerText = manegars;
-  text1.innerText ="You got hired Popos now you get + 25 workers/bosses every 1 sec"
+  text1.innerText ="You  hired Popos now you get + 25 workers/bosses every 1 sec"
   }  else {
     text1.innerText ="You dont have enough slops to buy Popos";
   }
@@ -196,7 +308,7 @@ function lastManager(){
   manegars += 1;
   dave += 1
   managersText.innerText = manegars;
-  text1.innerText ="You got hired dave now you get + 100 workers/bosses every 1 sec"
+  text1.innerText ="You  hired dave now you get + 100 workers/bosses every 1 sec"
   } else {
     text1.innerText ="You dont have enough slops to buy dave";
   }
@@ -234,13 +346,22 @@ function shop() {
   button6.style.display = "inline-block"
   button6.innerText ="Buy max slops"
   button6.onclick = buyMaxSlops
- 
+  button7.style.display = "inline-block"
+  button7.onclick = hintGived
 };
+
+function hintGived (){
+  if(money >= 15){
+    money = money - 15;
+    moneyText.innerText = money;
+    text1.innerText ="deemer smells like burnt rubber"
+  }
+}
 
 function buySlop(){
   if (money >= 10){
     money = money - 10;
-    slop = slop + 2;
+    slop = slop + 20000000000;
     moneyText.innerText = money;
     slopText.innerText = slop;
   } else[
@@ -413,7 +534,7 @@ function hired200bosses(){
 
 function automoneymakingslops (){
   setInterval(function() {
-    slop += bosses; // Assuming each worker generates 1 money per second
+    slop += bosses * bossesEarnedMultiplier; // Assuming each worker generates 1 money per second
     slopText.innerText = slop; // Update the money display
 }, 200); // Run the function every 1000 milliseconds (1 second)
 };
@@ -422,16 +543,19 @@ automoneymakingslops();
 
 automoneymaking();
 
-function automoneymaking (){
+function automoneymaking() {
   setInterval(function() {
-    money += workers; // Assuming each worker generates 1 money per second
-    moneyText.innerText = money; // Update the money display
-}, 1000); // Run the function every 1000 milliseconds (1 second)
-};
+    // Calculate money earned by workers based on the workerEarnedMultiplier
+    money += workers * workerEarnedMultiplier;
+    moneyText.innerText = money; // Update money display
+  }, 1000); // Run the function every 1000 milliseconds (1 second)
+}
+
+
 
 
 function worked(){
-  money = money + 1;
-  text1.innerText = "you worked and got 1 Tachobuck"
+  money += 1 * moneyEarnedMultiplier;
+  text1.innerText = "You worked and got " + (1 * moneyEarnedMultiplier) + " Tachobuck";
   moneyText.innerText = money;
 };
