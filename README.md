@@ -1,1 +1,1 @@
-<a href="https://poposlegend.github.io/SlopFactory.github.oi/">Visit My Game</a>
+<a href="https://poposlegend.github.io/SlopFactory.github.oi/" target="_blank">Visit My Game</a>
