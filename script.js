@@ -234,7 +234,7 @@ function shop() {
   button6.style.display = "inline-block"
   button6.innerText ="Buy max slops"
   button6.onclick = buyMaxSlops
-  button120.style.display ="none"
+ 
 };
 
 function buySlop(){
