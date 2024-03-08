@@ -54,3 +54,17 @@ button:hover {
   transform: scale(1.1);
   background-color: #ffa500; /* Changed hover background color */
 }
+
+@keyframes fadeInOut {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+#text {
+  animation: fadeInOut 15s 1; /* Half of the time the text is visible, half it is invisible */
+}
+
+.hidden {
+  display: none;
+}
+

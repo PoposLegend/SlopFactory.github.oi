@@ -7,12 +7,17 @@ let aidan = 0;
 let popos1 =0;
 let dave =0;
 
+const workerCost = 20;
+const bossCost =200;
+const slopCost = 10;
+
 
 const button1 = document.querySelector("#button1")
 const button2 = document.querySelector("#button2")
 const button3 = document.querySelector("#button3")
 const button4 = document.querySelector("#button4")
 const button5 = document.querySelector("#button5")
+const button6 = document.querySelector("#button6")
 const text1 = document.querySelector("#text1")
 const moneyText= document.querySelector("#moneyText")
 const slopText= document.querySelector("#slopText")
@@ -28,7 +33,67 @@ button2.onclick = worked;
 button3.onclick = hireWorker;
 button4.onclick = hireBosses;
 button5.onclick = managers;
+button6.onclick = buyMaxWorkers;
 button120.onclick = retireJoke;
+button6.style.display ="none"
+function calculateMaxWorkers() {
+  return Math.floor(slop / workerCost);
+}
+
+function buyMaxWorkers() {
+  var maxWorkers = calculateMaxWorkers();
+  var maxWorkersCost = maxWorkers * workerCost;
+
+  if (slop >= maxWorkersCost) {
+    workers += maxWorkers;
+    slop -= maxWorkersCost;
+    workersText.innerText = workers;
+    slopText.innerText = slop;
+    text1.innerText = "You have bought the maximum number of workers.";
+  } else {
+    text1.innerText = "You don't have enough slops to buy the maximum number of workers.";
+  }
+}
+
+function calculateMaxBosses() {
+  return Math.floor(slop / bossCost);
+}
+
+function buyMaxBosses() {
+  var maxBosses = calculateMaxBosses(); // Use calculateMaxBosses() instead of calculateMaxWorkers()
+  var maxBossesCost = maxBosses * bossCost; // Correct variable name
+
+  if (slop >= maxBossesCost) {
+    bosses += maxBosses;
+    slop -= maxBossesCost;
+    bossText.innerText = bosses;
+    slopText.innerText = slop;
+    text1.innerText = "You have bought the maximum number of bosses."; // Correct message for buying bosses
+  } else {
+    text1.innerText = "You don't have enough slops to buy the maximum number of bosses."; // Correct message for insufficient slops
+  }
+}
+
+function calculateMaxSlops() {
+  return Math.floor(money / slopCost); // Calculate the maximum number of slops based on the available money
+}
+
+// Define the function to buy the maximum number of slops
+function buyMaxSlops() {
+  var maxSlops = calculateMaxSlops(); // Calculate the maximum number of slops that can be bought
+  var maxSlopsCost = maxSlops * slopCost; // Calculate the total cost of buying the maximum number of slops
+
+  // Check if the player has enough money to buy the maximum number of slops
+  if (money >= maxSlopsCost) {
+    slop += maxSlops; // Increase the slop count by the maximum number of slops bought
+    money -= maxSlopsCost; // Decrease the money count by the total cost of buying the maximum number of slops
+    slopText.innerText = slop; // Update the displayed slop count
+    moneyText.innerText = money; // Update the displayed money count
+    text1.innerText = "You have bought the maximum number of slops."; // Display a message indicating successful purchase
+  } else {
+    text1.innerText = "You don't have enough money to buy the maximum number of slops."; // Display a message indicating insufficient funds
+  }
+}
 
 function retireJoke(){
   text1.innerText ="just kidding. keep working"
@@ -50,6 +115,7 @@ function factory(){
   button5.innerText = "Managers";
   button5.style.display ="inline-block";
   button5.onclick = managers;
+  button6.style.display ="none"
 };
 
 function managers(){
@@ -165,6 +231,9 @@ function shop() {
   button4.onclick = buy200Slops;
   button5.innerText = "buy 2k slops (10k$)"
   button5.onclick = buy2kslops;;
+  button6.style.display = "inline-block"
+  button6.innerText ="Buy max slops"
+  button6.onclick = buyMaxSlops
   button120.style.display ="none"
 };
 
@@ -223,7 +292,9 @@ button4.onclick = hiredtwinty;
 button5.innerText = "Hire 100 new workers (2k slops)"
 button5.onclick = hired100;
 text1.innerText ="Hire workers to get more money!"
-
+button6.style.display ="inline"
+button6.onclick = buyMaxWorkers
+button6.innerText ="Buy max workers"
 };
 
 function hired(){
@@ -287,6 +358,9 @@ button4.innerText ="Hire 20 bosses (4k slops)"
 button4.onclick = hired20boss;
 button5.innerText = "Hire 200 bosses (40k slops)"
 button5.onclick = hired200bosses;
+button6.style.display="inline-block"
+button6.onclick = buyMaxBosses;
+button6.innerText ="Buy max bosses"
 };
 
 function hired1boss(){
@@ -361,4 +435,3 @@ function worked(){
   text1.innerText = "you worked and got 1 Tachobuck"
   moneyText.innerText = money;
 };
-
