@@ -14,6 +14,8 @@ let upgrades =0;
 let moneyEarnedMultiplier = 1;
 let workerEarnedMultiplier = 1;
 let bossesEarnedMultiplier =1;
+
+
 const workerCost = 20;
 const bossCost =200;
 const slopCost = 10;
