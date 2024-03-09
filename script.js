@@ -361,7 +361,7 @@ function hintGived (){
 function buySlop(){
   if (money >= 10){
     money = money - 10;
-    slop = slop + 20000000000;
+    slop = slop + 2;
     moneyText.innerText = money;
     slopText.innerText = slop;
   } else[
