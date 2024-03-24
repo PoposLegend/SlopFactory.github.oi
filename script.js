@@ -173,7 +173,7 @@ button4.onclick = hireBosses;
 button5.onclick = managers;
 button6.onclick = upgrade;
 button120.onclick = retireJoke;
-button8.onclick = GameData
+button8.onclick = GameData;
 
 button6.innerText = "Upgrades"
 button7.style.display = "none"
