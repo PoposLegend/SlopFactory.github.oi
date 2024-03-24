@@ -41,7 +41,7 @@ function updateMoneyDisplay() {
   moneyText.innerText = formatNumber(money); // Use formatNumber function to format money display
 }
 
-let slopjuicesUpgrade = 500000; // Example number
+let slopjuicesUpgrade = 3000000; // Example number
 let slopjuicesUpgradeDisplay = formatNumber(slopjuicesUpgrade);
 let slopProductionMultiplier = 1; // Start with no multiplier
 
@@ -96,7 +96,7 @@ text1.innerText ="Buy upgrades to get more (slops/T$)/you can only buy 1 time/ex
 function slopjuice(){
   if(slop >= slopjuicesUpgrade){
     slop -= slopjuicesUpgrade;
-    slopjuicesUpgrade *= 2; // Update the upgrade cost
+    slopjuicesUpgrade *= 5; // Update the upgrade cost
     slopjuicesUpgradeDisplay = formatNumber(slopjuicesUpgrade); // Update the displayed upgrade cost
     document.querySelector("#button5").innerText = "slop juice - speeds up slop production by 2x cost (" + slopjuicesUpgradeDisplay + " slops)";
     upgrades += 1;
@@ -602,7 +602,7 @@ function automoneymaking() {
 
 
 function worked(){
-  money += 1000000000 * moneyEarnedMultiplier;
+  money += 1 * moneyEarnedMultiplier;
   text1.innerText = "You worked and got " + (1 * moneyEarnedMultiplier) + " Tachobuck";
   moneyText.innerText = money;
 };
