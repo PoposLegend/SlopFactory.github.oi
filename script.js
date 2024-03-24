@@ -35,6 +35,64 @@ function formatNumber(number) {
   }
 }
 
+// Function to save the game state
+function saveGame() {
+  localStorage.setItem('gameState', JSON.stringify({
+      money: money,
+      slop: slop,
+      workers: workers,
+      bosses: bosses,
+      manegars: manegars,
+      aidan: aidan,
+      popos1: popos1,
+      dave: dave,
+      cat: cat,
+      upgrade0: upgrade0,
+      upgrade1: upgrade1,
+      upgrade2: upgrade2,
+      upgrades: upgrades,
+      moneyEarnedMultiplier: moneyEarnedMultiplier,
+      workerEarnedMultiplier: workerEarnedMultiplier,
+      bossesEarnedMultiplier: bossesEarnedMultiplier,
+      slopProductionMultiplier: slopProductionMultiplier
+  }));
+  console.log("Game saved.");
+}
+
+// Function to load the game state
+function loadGame() {
+  var gameState = JSON.parse(localStorage.getItem('gameState'));
+  if (gameState) {
+      money = gameState.money;
+      slop = gameState.slop;
+      workers = gameState.workers;
+      bosses = gameState.bosses;
+      manegars = gameState.manegars;
+      aidan = gameState.aidan;
+      popos1 = gameState.popos1;
+      dave = gameState.dave;
+      cat = gameState.cat;
+      upgrade0 = gameState.upgrade0;
+      upgrade1 = gameState.upgrade1;
+      upgrade2 = gameState.upgrade2;
+      upgrades = gameState.upgrades;
+      moneyEarnedMultiplier = gameState.moneyEarnedMultiplier;
+      workerEarnedMultiplier = gameState.workerEarnedMultiplier;
+      bossesEarnedMultiplier = gameState.bossesEarnedMultiplier;
+      slopProductionMultiplier = gameState.slopProductionMultiplier;
+
+      updateMoneyDisplay(); // Update the displayed values
+      console.log("Game loaded.");
+  } else {
+      console.log("No saved game found.");
+  }
+}
+
+// Call the loadGame function when the page loads to load the previous game state if available
+window.onload = function() {
+  loadGame();
+};
+
 
 
 function updateMoneyDisplay() {
