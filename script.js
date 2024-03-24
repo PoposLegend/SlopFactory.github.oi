@@ -59,32 +59,71 @@ function saveGame() {
   console.log("Game saved.");
 }
 
+function deleteGameData() {
+  localStorage.removeItem('gameState');
+  // Reset all the stats to their initial values
+  money = 0;
+  slop = 0;
+  workers = 0;
+  bosses = 0;
+  manegars = 0;
+  aidan = 0;
+  popos1 = 0;
+  dave = 0;
+  cat = 0;
+  upgrade0 = 0;
+  upgrade1 = 0;
+  upgrade2 = 0;
+  upgrades = 0;
+  moneyEarnedMultiplier = 1;
+  workerEarnedMultiplier = 1;
+  bossesEarnedMultiplier = 1;
+  slopProductionMultiplier = 1;
+
+  // Update the displayed values
+  updateMoneyDisplay();
+  workersText.innerText = workers;
+  bossText.innerText = bosses;
+  managersText.innerText = manegars;
+  upgradesText.innerText = upgrades;
+  slopText.innerText = slop;
+
+  console.log("Game data deleted and stats reset.");
+}
+
+
 // Function to load the game state
 function loadGame() {
   var gameState = JSON.parse(localStorage.getItem('gameState'));
   if (gameState) {
-      money = gameState.money;
-      slop = gameState.slop;
-      workers = gameState.workers;
-      bosses = gameState.bosses;
-      manegars = gameState.manegars;
-      aidan = gameState.aidan;
-      popos1 = gameState.popos1;
-      dave = gameState.dave;
-      cat = gameState.cat;
-      upgrade0 = gameState.upgrade0;
-      upgrade1 = gameState.upgrade1;
-      upgrade2 = gameState.upgrade2;
-      upgrades = gameState.upgrades;
-      moneyEarnedMultiplier = gameState.moneyEarnedMultiplier;
-      workerEarnedMultiplier = gameState.workerEarnedMultiplier;
-      bossesEarnedMultiplier = gameState.bossesEarnedMultiplier;
-      slopProductionMultiplier = gameState.slopProductionMultiplier;
+    money = gameState.money;
+    slop = gameState.slop;
+    workers = gameState.workers;
+    bosses = gameState.bosses;
+    manegars = gameState.manegars;
+    aidan = gameState.aidan;
+    popos1 = gameState.popos1;
+    dave = gameState.dave;
+    cat = gameState.cat;
+    upgrade0 = gameState.upgrade0;
+    upgrade1 = gameState.upgrade1;
+    upgrade2 = gameState.upgrade2;
+    upgrades = gameState.upgrades;
+    moneyEarnedMultiplier = gameState.moneyEarnedMultiplier;
+    workerEarnedMultiplier = gameState.workerEarnedMultiplier;
+    bossesEarnedMultiplier = gameState.bossesEarnedMultiplier;
+    slopProductionMultiplier = gameState.slopProductionMultiplier;
 
-      updateMoneyDisplay(); // Update the displayed values
-      console.log("Game loaded.");
+    // Update the display to reflect the loaded values
+    updateMoneyDisplay();
+    workersText.innerText = workers;
+    bossText.innerText = bosses;
+    managersText.innerText = manegars;
+    upgradesText.innerText = upgrades;
+    slopText.innerText = slop;
+    console.log("Game loaded.");
   } else {
-      console.log("No saved game found.");
+    console.log("No saved game found.");
   }
 }
 
@@ -115,6 +154,7 @@ const button4 = document.querySelector("#button4")
 const button5 = document.querySelector("#button5")
 const button6 = document.querySelector("#button6")
 const button7 = document.querySelector("#button7")
+const button8 = document.querySelector("#button8")
 const text1 = document.querySelector("#text1")
 const upgradesText = document.querySelector("#upgradesText")
 const moneyText= document.querySelector("#moneyText")
@@ -133,6 +173,7 @@ button4.onclick = hireBosses;
 button5.onclick = managers;
 button6.onclick = upgrade;
 button120.onclick = retireJoke;
+button8.onclick = GameData
 
 button6.innerText = "Upgrades"
 button7.style.display = "none"
@@ -149,7 +190,29 @@ button5.innerText = "slop juice - speeds up slop production by 2x cost" + "(" + 
 button5.onclick = slopjuice;
 button6.style.display ="none"
 text1.innerText ="Buy upgrades to get more (slops/T$)/you can only buy 1 time/expext the slop juise upgrade"
+button8.style.display ="none"
 }
+
+function GameData() {
+  button1.innerText = "Go back";
+  button1.onclick = factory;
+
+  button2.innerText = "Save Game";
+  button2.onclick = saveGame;
+
+  button3.innerText = "Load Last Save File";
+  button3.onclick = loadGame;
+
+  button4.innerText = "Delete Game Data";
+  button4.onclick = deleteGameData;
+
+  // Hide the rest of the buttons
+  button5.style.display = "none";
+  button6.style.display = "none";
+  button7.style.display = "none";
+  button8.style.display = "none";
+}
+
 
 function slopjuice(){
   if(slop >= slopjuicesUpgrade){
@@ -301,6 +364,7 @@ function factory(){
   button6.onclick = upgrade;
   button6.style.display ="inline-block"
   button7.style.display = "none"
+  button8.style.display ="inline-block"
 };
 
 function managers(){
@@ -317,6 +381,7 @@ function managers(){
   button5.onclick = tachophobicat
   button6.style.display ="none"
   text1.innerText = "Hire managers to auto buy workers and bosses! also you can only hire each manager once"
+  button8.style.display ="none"
 }
 
 function tachophobicat() {
@@ -454,6 +519,7 @@ function shop() {
   button6.onclick = buyMaxSlops
   button7.style.display = "inline-block"
   button7.onclick = hintGived
+  button8.style.display ="none"
 };
 
 function hintGived (){
@@ -522,6 +588,7 @@ text1.innerText ="Hire workers to get more money!"
 button6.style.display ="inline"
 button6.onclick = buyMaxWorkers
 button6.innerText ="Buy max workers"
+button8.style.display ="none"
 };
 
 function hired(){
@@ -588,6 +655,7 @@ button5.onclick = hired200bosses;
 button6.style.display="inline-block"
 button6.onclick = buyMaxBosses;
 button6.innerText ="Buy max bosses"
+button8.style.display ="none"
 };
 
 function hired1boss(){
