@@ -173,7 +173,7 @@ button4.onclick = hireBosses;
 button5.onclick = managers;
 button6.onclick = upgrade;
 button120.onclick = retireJoke;
-button8.onclick = GameData1;
+button8.onclick = gameData;
 
 button6.innerText = "Upgrades"
 button7.style.display = "none"
@@ -193,7 +193,7 @@ text1.innerText ="Buy upgrades to get more (slops/T$)/you can only buy 1 time/ex
 button8.style.display ="none"
 }
 
-function GameData1() {
+function gameData() {
   button1.innerText = "Go back";
   button1.onclick = factory;
 
