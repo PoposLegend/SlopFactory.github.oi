@@ -16,15 +16,29 @@ let workerEarnedMultiplier = 1;
 let bossesEarnedMultiplier =1;
 
 function formatNumber(number) {
-  if (number >= 1e9) {
-      return (number / 1e9).toFixed(2) + "b";
+  if (number >= 1e21) {
+    return (number / 1e21).toFixed(2) + "se";
+  } else if (number >= 1e18) {
+    return (number / 1e18).toFixed(2) + "qi";
+  } else if (number >= 1e15) {
+    return (number / 1e15).toFixed(2) + "qa";
+  } else if (number >= 1e12) {
+    return (number / 1e12).toFixed(2) + "t";
+  } else if (number >= 1e9) {
+    return (number / 1e9).toFixed(2) + "b";
   } else if (number >= 1e6) {
-      return (number / 1e6).toFixed(2) + "m";
+    return (number / 1e6).toFixed(2) + "m";
   } else if (number >= 1e3) {
-      return (number / 1e3).toFixed(2) + "k";
+    return (number / 1e3).toFixed(2) + "k";
   } else {
-      return number.toString();
+    return number.toString();
   }
+}
+
+
+
+function updateMoneyDisplay() {
+  moneyText.innerText = formatNumber(money); // Use formatNumber function to format money display
 }
 
 let slopjuicesUpgrade = 500000; // Example number
@@ -588,7 +602,7 @@ function automoneymaking() {
 
 
 function worked(){
-  money += 1 * moneyEarnedMultiplier;
+  money += 1000000000 * moneyEarnedMultiplier;
   text1.innerText = "You worked and got " + (1 * moneyEarnedMultiplier) + " Tachobuck";
   moneyText.innerText = money;
 };
