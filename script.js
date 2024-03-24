@@ -15,6 +15,21 @@ let moneyEarnedMultiplier = 1;
 let workerEarnedMultiplier = 1;
 let bossesEarnedMultiplier =1;
 
+function formatNumber(number) {
+  if (number >= 1e9) {
+      return (number / 1e9).toFixed(2) + "b";
+  } else if (number >= 1e6) {
+      return (number / 1e6).toFixed(2) + "m";
+  } else if (number >= 1e3) {
+      return (number / 1e3).toFixed(2) + "k";
+  } else {
+      return number.toString();
+  }
+}
+
+let slopjuicesUpgrade = 500000; // Example number
+let slopjuicesUpgradeDisplay = formatNumber(slopjuicesUpgrade);
+let slopProductionMultiplier = 1; // Start with no multiplier
 
 const workerCost = 20;
 const bossCost =200;
@@ -58,9 +73,28 @@ button3.innerText = "2x cash from Workers (200k slops)"
 button3.onclick = upgradeWorkers
 button4.innerText = "2x slops from bosses!(20m slops)"
 button4.onclick = upgradeBosses
-button5.style.display ="none"
+button5.innerText = "slop juice - speeds up slop production by 2x cost" + "(" + slopjuicesUpgradeDisplay +" slops"+ ")";
+button5.onclick = slopjuice;
 button6.style.display ="none"
-text1.innerText ="Buy upgrades to get more (slops/T$)"
+text1.innerText ="Buy upgrades to get more (slops/T$)/you can only buy 1 time/expext the slop juise upgrade"
+}
+
+function slopjuice(){
+  if(slop >= slopjuicesUpgrade){
+    slop -= slopjuicesUpgrade;
+    slopjuicesUpgrade *= 2; // Update the upgrade cost
+    slopjuicesUpgradeDisplay = formatNumber(slopjuicesUpgrade); // Update the displayed upgrade cost
+    document.querySelector("#button5").innerText = "slop juice - speeds up slop production by 2x cost (" + slopjuicesUpgradeDisplay + " slops)";
+    upgrades += 1;
+    upgradesText.innerText = upgrades;
+    
+    // Increase slop production multiplier by 2 when the upgrade is bought
+    slopProductionMultiplier *= 2;
+
+    text1.innerText ="slop production is now x2 "
+  } else {
+    text1.innerText = "You need more slops!!";
+  }
 }
 
 function upgradeBosses() {
@@ -74,7 +108,7 @@ function upgradeBosses() {
       // Update worker earnings to 2 money per second with the upgrade
       bossesEarnedMultiplier = 2;
       
-      text1.innerText = "You now have x2 Cash from Bosses";
+      text1.innerText = "You now have x2 Cash from Bosses/You cant buy this upgrade any more";
     } else {
       text1.innerText = "You need more slops!!";
     }
@@ -92,7 +126,7 @@ function upgradeWorkers() {
       // Update worker earnings to 2 money per second with the upgrade
       workerEarnedMultiplier = 2;
       
-      text1.innerText = "You now have x2 Cash from Workers";
+      text1.innerText = "You now have x2 Cash from Workers/You cant buy this upgrade any more";
     } else {
       text1.innerText = "You need more slops!!";
     }
@@ -107,7 +141,7 @@ function upgradeCash() {
       upgrades += 1;
       upgradesText.innerText = upgrades;
       moneyEarnedMultiplier = 2;
-      text1.innerText = "You now have x2 Cash from Work";
+      text1.innerText = "You now have x2 Cash from Work/You cant buy this upgrade any more";
     } else {
       text1.innerText = "You need more slops!!";
     }
@@ -153,23 +187,21 @@ function buyMaxBosses() {
 }
 
 function calculateMaxSlops() {
-  return Math.floor(money / slopCost); // Calculate the maximum number of slops based on the available money
+  return Math.floor(money / slopCost);
 }
 
-// Define the function to buy the maximum number of slops
 function buyMaxSlops() {
-  var maxSlops = calculateMaxSlops(); // Calculate the maximum number of slops that can be bought
-  var maxSlopsCost = maxSlops * slopCost; // Calculate the total cost of buying the maximum number of slops
+  var maxSlops = calculateMaxSlops();
+  var maxSlopsCost = maxSlops * slopCost;
 
-  // Check if the player has enough money to buy the maximum number of slops
   if (money >= maxSlopsCost) {
-    slop += maxSlops; // Increase the slop count by the maximum number of slops bought
-    money -= maxSlopsCost; // Decrease the money count by the total cost of buying the maximum number of slops
-    slopText.innerText = slop; // Update the displayed slop count
-    moneyText.innerText = money; // Update the displayed money count
-    text1.innerText = "You have bought the maximum number of slops."; // Display a message indicating successful purchase
+    slop += maxSlops;
+    money -= maxSlopsCost;
+    slopText.innerText = slop;
+    moneyText.innerText = money;
+    text1.innerText = "You have bought the maximum number of slops.";
   } else {
-    text1.innerText = "You don't have enough money to buy the maximum number of slops."; // Display a message indicating insufficient funds
+    text1.innerText = "You don't have enough money to buy the maximum number of slops.";
   }
 }
 
@@ -536,11 +568,10 @@ function hired200bosses(){
 
 function automoneymakingslops (){
   setInterval(function() {
-    slop += bosses * bossesEarnedMultiplier; // Assuming each worker generates 1 money per second
-    slopText.innerText = slop; // Update the money display
-}, 200); // Run the function every 1000 milliseconds (1 second)
-};
-
+    slop += bosses * bossesEarnedMultiplier * slopProductionMultiplier; // Update slop production based on the multiplier
+    slopText.innerText = slop; // Update the slop display
+  }, 200); // Run the function every 200 milliseconds (adjust as needed)
+}
 automoneymakingslops();
 
 automoneymaking();
