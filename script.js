@@ -163,6 +163,7 @@ const workersText = document.querySelector("#workersText")
 const bossText = document.querySelector("#bossText")
 const managersText = document.querySelector("#managersText")
 const button120 = document.querySelector("#button120")
+const music = document.getElementById("music")
 
 //buttons
 
@@ -174,9 +175,56 @@ button5.onclick = managers;
 button6.onclick = upgrade;
 button120.onclick = retireJoke;
 button8.onclick = gameData;
+music.onclick = musicFunction;
 
 button6.innerText = "Upgrades"
 button7.style.display = "none"
+
+function musicFunction(){
+  button1.innerText = "Go back";
+  button1.onclick = factory;
+  button2.innerText = "Play The Slop Factory Music";
+  button2.onclick = playedMusic;
+  button3.innerText = "Pause"
+  button3.onclick = pauseMusic
+  button4.style.display = "none";
+  button5.style.display = "none";
+  button6.style.display = "none";
+  button7.style.display = "none";
+  button8.style.display = "none";
+  music.style.display = "none";
+  text1.innerText = "slop factory song made by the legendry man him self"
+}
+
+let audioPlaying = false; // Flag variable to track whether audio is playing
+let audio; // Declare audio variable outside the function scope
+
+function playedMusic() {
+    // If audio is already playing, exit the function to prevent multiple plays
+    if (audioPlaying) return;
+
+    // Create an audio element
+    audio = new Audio();
+    // Set the source of the audio file
+    audio.src = "Untitled video - Made with Clipchamp.mp3"; // Replace with your actual music URL
+    // Play the audio
+    audio.play();
+
+    // Set audioPlaying flag to true
+    audioPlaying = true;
+}
+
+function pauseMusic() {
+    // If audio is not playing, exit the function
+    if (!audioPlaying) return;
+
+    // Pause the audio
+    audio.pause();
+
+    // Set audioPlaying flag to false
+    audioPlaying = false;
+}
+
 function upgrade (){
 button1.innerText ="Go back"
 button1.onclick = factory;
@@ -191,6 +239,7 @@ button5.onclick = slopjuice;
 button6.style.display ="none"
 text1.innerText ="Buy upgrades to get more (slops/T$)/you can only buy 1 time/expext the slop juise upgrade"
 button8.style.display ="none"
+music.style.display = "none"
 }
 
 function gameData() {
@@ -211,6 +260,7 @@ function gameData() {
   button6.style.display = "none";
   button7.style.display = "none";
   button8.style.display = "none";
+  music.style.display = "none"
 }
 
 
@@ -349,6 +399,7 @@ function factory(){
   button1.onclick = shop;
   button1.innerText = "Shop";
   button2.innerText = "Work";
+  button2.style.display = "inline-block"
   text1.innerText ="welcome to slop factory what do you want to do?"
   button2.onclick = worked;
   button3.innerText ="Hire workers"
@@ -365,6 +416,7 @@ function factory(){
   button6.style.display ="inline-block"
   button7.style.display = "none"
   button8.style.display ="inline-block"
+  music.style.display = "inline-block"
 };
 
 function managers(){
@@ -382,6 +434,7 @@ function managers(){
   button6.style.display ="none"
   text1.innerText = "Hire managers to auto buy workers and bosses! also you can only hire each manager once"
   button8.style.display ="none"
+  music.style.display = "none"
 }
 
 function tachophobicat() {
@@ -520,6 +573,7 @@ function shop() {
   button7.style.display = "inline-block"
   button7.onclick = hintGived
   button8.style.display ="none"
+  music.style.display = "none"
 };
 
 function hintGived (){
@@ -589,6 +643,7 @@ button6.style.display ="inline"
 button6.onclick = buyMaxWorkers
 button6.innerText ="Buy max workers"
 button8.style.display ="none"
+music.style.display = "none"
 };
 
 function hired(){
@@ -656,6 +711,7 @@ button6.style.display="inline-block"
 button6.onclick = buyMaxBosses;
 button6.innerText ="Buy max bosses"
 button8.style.display ="none"
+music.style.display = "none"
 };
 
 function hired1boss(){
